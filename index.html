@@ -37,7 +37,7 @@
             material = new THREE.PointsMaterial({ color: 0xff0000, size: 2 });
             
             // Load heart shape image and create particle positions
-            loadImageAndMapParticles('heart-image.png', heartShapePositions, positions, 0);
+            loadImageAndMapParticles('heart.png', heartShapePositions, positions, 0);
             geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
             particles = new THREE.Points(geometry, material);
             scene.add(particles);
