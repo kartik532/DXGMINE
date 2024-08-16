@@ -34,7 +34,7 @@
 
             // Load the GLTF model
             const loader = new THREE.GLTFLoader();
-            loader.load('heart.glb', function (gltf) {
+            loader.load('https://kartik532.github.io/DXGMINE/heart.glb', function (gltf) {
                 heartModel = gltf.scene;
                 heartModel.scale.set(10, 10, 10); // Adjust size
                 scene.add(heartModel);
