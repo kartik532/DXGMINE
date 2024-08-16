@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Heart Animation</title>
+    <title>3D Heart to ECG Animation</title>
     <style>
         body { margin: 0; overflow-x: hidden; }
         canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
@@ -13,10 +13,9 @@
 <body>
     <div class="content"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/loaders/GLTFLoader.js"></script>
     <script>
-        let scene, camera, renderer, heartModel;
-        let scatterPositions = [], ecgPositions = [];
+        let scene, camera, renderer, particles, geometry, material, particleCount = 2000;
+        let heartShapePositions = [], scatterPositions = [], ecgPositions = [];
 
         init();
         animate();
@@ -32,26 +31,26 @@
             renderer.setSize(window.innerWidth, window.innerHeight);
             document.body.appendChild(renderer.domElement);
 
-            // Load the GLTF model
-            const loader = new THREE.GLTFLoader();
-            loader.load('https://kartik532.github.io/DXGMINE/heart.glb', function (gltf) {
-                heartModel = gltf.scene;
-                heartModel.scale.set(10, 10, 10); // Adjust size
-                scene.add(heartModel);
-            }, undefined, function (error) {
-                console.error(error);
-            });
+            // Geometry & Material for Particles
+            geometry = new THREE.BufferGeometry();
+            const positions = new Float32Array(particleCount * 3);
+            material = new THREE.PointsMaterial({ color: 0x000000, size: 2 });
+            
+            createHeartShape(positions);
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            particles = new THREE.Points(geometry, material);
+            scene.add(particles);
 
-            // Add Lighting
-            const light = new THREE.DirectionalLight(0xffffff, 1);
-            light.position.set(5, 5, 5).normalize();
-            scene.add(light);
+            // Save initial heart positions
+            for (let i = 0; i < positions.length; i++) {
+                heartShapePositions.push(positions[i]);
+            }
 
             // Precompute scatter positions
-            for (let i = 0; i < 2000; i++) {
-                scatterPositions[i * 3] = (Math.random() - 0.5) * 600;
-                scatterPositions[i * 3 + 1] = (Math.random() - 0.5) * 600;
-                scatterPositions[i * 3 + 2] = (Math.random() - 0.5) * 600;
+            for (let i = 0; i < particleCount; i++) {
+                scatterPositions[i * 3] = heartShapePositions[i * 3] + (Math.random() - 0.5) * 600;
+                scatterPositions[i * 3 + 1] = heartShapePositions[i * 3 + 1] + (Math.random() - 0.5) * 600;
+                scatterPositions[i * 3 + 2] = heartShapePositions[i * 3 + 2] + (Math.random() - 0.5) * 600;
             }
 
             // Precompute ECG line positions
@@ -62,33 +61,53 @@
             window.addEventListener('resize', onWindowResize);
         }
 
+        function createHeartShape(positions) {
+    for (let i = 0; i < particleCount; i++) {
+        const t = Math.PI * (Math.random() - 0.5);
+        const phi = 2 * Math.PI * Math.random();
+        const x = 16 * Math.pow(Math.sin(t), 3); // x-coordinate for heart shape
+        const y = 13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t); // y-coordinate
+        const z = (Math.random() - 0.5) * 2; // z-coordinate for depth (to make it 3D)
+        positions[i * 3] = x * 10; // Scaling factor to adjust size
+        positions[i * 3 + 1] = y * 10;
+        positions[i * 3 + 2] = z * 10;
+    }
+}
+
+
         function createECGShape() {
-            for (let i = 0; i < 2000; i++) {
-                ecgPositions[i * 3] = (i % 50) * 4 - 100;
-                ecgPositions[i * 3 + 1] = Math.sin(i * 0.1) * 50;
-                ecgPositions[i * 3 + 2] = 0;
+            for (let i = 0; i < particleCount; i++) {
+                ecgPositions[i * 3] = (i % 50) * 4 - 100; // x-axis
+                ecgPositions[i * 3 + 1] = Math.sin(i * 0.1) * 50; // y-axis (simulate ECG wave)
+                ecgPositions[i * 3 + 2] = 0; // flat on the z-axis
             }
         }
 
         function onScroll() {
-            const scrollY = window.scrollY;
-            const maxScroll = document.body.scrollHeight - window.innerHeight;
-            const scrollPercent = scrollY / maxScroll;
+    const scrollY = window.scrollY;
+    const maxScroll = document.body.scrollHeight - window.innerHeight;
+    const scrollPercent = scrollY / maxScroll;
 
-            if (scrollPercent < 0.33) {
-                smoothTransitionHeart(scatterPositions, scrollPercent * 3);
-            } else if (scrollPercent < 0.66) {
-                smoothTransitionHeart(ecgPositions, (scrollPercent - 0.33) * 3);
-            }
+    if (scrollPercent < 0.33) {
+        // Scatter from Heart
+        smoothTransition(heartShapePositions, scatterPositions, scrollPercent * 3);
+    } else if (scrollPercent < 0.66) {
+        // From Scatter to ECG
+        smoothTransition(scatterPositions, ecgPositions, (scrollPercent - 0.33) * 3);
+    }
 
-            if (scrollY === 0) {
-                smoothTransitionHeart(heartModel.position, 1);
-            }
-        }
+    // Only return to the heart shape when scrolling back to the top
+    if (scrollY === 0) {
+        smoothTransition(scatterPositions, heartShapePositions, 1);
+    }
 
-        function smoothTransitionHeart(to, progress) {
-            if (heartModel) {
-                heartModel.position.lerp(new THREE.Vector3(...to), easeOutCubic(progress));
+    particles.geometry.attributes.position.needsUpdate = true;
+}
+
+
+        function smoothTransition(from, to, progress) {
+            for (let i = 0; i < particleCount * 3; i++) {
+                particles.geometry.attributes.position.array[i] = from[i] + (to[i] - from[i]) * easeOutCubic(progress);
             }
         }
 
@@ -104,9 +123,6 @@
 
         function animate() {
             requestAnimationFrame(animate);
-            if (heartModel) {
-                heartModel.rotation.y += 0.01; // Rotate for animation effect
-            }
             renderer.render(scene, camera);
         }
     </script>
