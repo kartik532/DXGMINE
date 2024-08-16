@@ -1,395 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<!-- Mirrored from ethfre.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2024 15:01:34 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Ethfre.com - Earn Ethereum Up to 500% APY</title></title>
-
-    <meta name="description"
-          content="Earn FREE Ethereum today. Answer paid surveys or watch PTC to redeem free TH/s rewards daily.">
-    <meta name="keywords"
-          content="Eth fre, eth, eth free">
-    <meta name="csrf-token" content="FPedjeoFvTp86xe9z4QKbe3OFACCyopkpV6jXNXH">
-    <meta content="Ethfre.com - Earn Ethereum Up to 500% APY" property="og:title">
-    <meta
-        content="Earn FREE Ethereum today. Answer paid surveys or watch PTC to redeem free TH/s rewards daily."
-        property="og:description">
-    <meta content="https://ethfre.com/img/ethfre.png" property="og:image">
-    <meta content="Ethfre.com - Earn Ethereum Up to 500% APY" property="twitter:title">
-    <meta
-        content="Earn FREE Ethereum today. Answer paid surveys or watch PTC to redeem free TH/s rewards daily."
-        property="twitter:description">
-    <meta content="https://ethfre.com/img/ethfre.png" property="twitter:image">
-    <meta property="og:type" content="website">
-    <meta content="summary_large_image" name="twitter:card">
-    <link rel="shortcut icon" href="img/logo.png"/>
-
-    <link rel="stylesheet" href="../cdn.jsdelivr.net/npm/bootstrap%405.3.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css"/>
-
-    <!-- Livewire Styles --><style >[wire\:loading][wire\:loading], [wire\:loading\.delay][wire\:loading\.delay], [wire\:loading\.inline-block][wire\:loading\.inline-block], [wire\:loading\.inline][wire\:loading\.inline], [wire\:loading\.block][wire\:loading\.block], [wire\:loading\.flex][wire\:loading\.flex], [wire\:loading\.table][wire\:loading\.table], [wire\:loading\.grid][wire\:loading\.grid], [wire\:loading\.inline-flex][wire\:loading\.inline-flex] {display: none;}[wire\:loading\.delay\.none][wire\:loading\.delay\.none], [wire\:loading\.delay\.shortest][wire\:loading\.delay\.shortest], [wire\:loading\.delay\.shorter][wire\:loading\.delay\.shorter], [wire\:loading\.delay\.short][wire\:loading\.delay\.short], [wire\:loading\.delay\.default][wire\:loading\.delay\.default], [wire\:loading\.delay\.long][wire\:loading\.delay\.long], [wire\:loading\.delay\.longer][wire\:loading\.delay\.longer], [wire\:loading\.delay\.longest][wire\:loading\.delay\.longest] {display: none;}[wire\:offline][wire\:offline] {display: none;}[wire\:dirty]:not(textarea):not(input):not(select) {display: none;}:root {--livewire-progress-bar-color: #2299dd;}[x-cloak] {display: none !important;}</style>
+    <title>3D Heart Animation</title>
+    <style>
+        body { margin: 0; overflow-x: hidden; }
+        canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+        .content { height: 300vh; } /* For scrolling */
+    </style>
 </head>
 <body>
+    <div class="content"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/loaders/GLTFLoader.js"></script>
+    <script>
+        let scene, camera, renderer, heartModel;
+        let scatterPositions = [], ecgPositions = [];
 
-<nav wire:snapshot="{&quot;data&quot;:[],&quot;memo&quot;:{&quot;id&quot;:&quot;dDzMqNEDrsaSJVxWmGah&quot;,&quot;name&quot;:&quot;navigation&quot;,&quot;path&quot;:&quot;\/&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;children&quot;:[],&quot;scripts&quot;:[],&quot;assets&quot;:[],&quot;errors&quot;:[],&quot;locale&quot;:&quot;en&quot;},&quot;checksum&quot;:&quot;bb07a2ca710ad6b543bc4eafdabbd0cdb9867011fcec48ca773c3c7baec8b294&quot;}" wire:effects="[]" wire:id="dDzMqNEDrsaSJVxWmGah" class="navbar navbar-expand-lg bg-body-tertiary border-bottom" data-bs-theme="dark">
-    <div class="container">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="navbar-brand" href="index.html"><img src="img/logo-eth.png" style="width: 40px; height: auto;" alt=""></a>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html" wire:navigate>
-                        Dashboard
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html" wire:navigate>
-                        Rewards
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html" wire:navigate>
-                        Deposit
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html" wire:navigate>
-                        Withdraw
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html" wire:navigate>
-                        Buy Power
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html" wire:navigate>
-                        Referral
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
-    </div>
-</nav>
+        init();
+        animate();
 
-<div wire:snapshot="{&quot;data&quot;:[],&quot;memo&quot;:{&quot;id&quot;:&quot;ETloBnHhuggaes3Xfe6y&quot;,&quot;name&quot;:&quot;welcome&quot;,&quot;path&quot;:&quot;\/&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;children&quot;:{&quot;lw-3049599400-0&quot;:[&quot;div&quot;,&quot;4wFarDD7kdOXvzjyrcWm&quot;],&quot;lw-3049599400-1&quot;:[&quot;div&quot;,&quot;JXXemohYYeS6qSo7oAiH&quot;],&quot;lw-3049599400-2&quot;:[&quot;div&quot;,&quot;FFplDWjrrjI8ohRXQm4b&quot;],&quot;lw-3049599400-3&quot;:[&quot;div&quot;,&quot;jkAMn4UYk8eA9MNg7JLm&quot;]},&quot;scripts&quot;:[],&quot;assets&quot;:[],&quot;errors&quot;:[],&quot;locale&quot;:&quot;en&quot;},&quot;checksum&quot;:&quot;0f1cdff69db3e8cfc79574a1170c1c17aba1032f195bf845ae7c46505732a84a&quot;}" wire:effects="[]" wire:id="ETloBnHhuggaes3Xfe6y">
-    <div class="container py-5">
-        <div wire:snapshot="{&quot;data&quot;:[],&quot;memo&quot;:{&quot;id&quot;:&quot;4wFarDD7kdOXvzjyrcWm&quot;,&quot;name&quot;:&quot;login&quot;,&quot;path&quot;:&quot;\/&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;children&quot;:[],&quot;scripts&quot;:[],&quot;assets&quot;:[],&quot;errors&quot;:[],&quot;locale&quot;:&quot;en&quot;},&quot;checksum&quot;:&quot;c6c7ce43c032c095e2bd31d0bd8cc19a1cc1ac63870ac822c938fe273be57a22&quot;}" wire:effects="[]" wire:id="4wFarDD7kdOXvzjyrcWm">
-    <div class="row">
-        <div class="col-12">
-            <div class="text-center">
-                <h3 class="wallet-title m-0 py-5">Earn FREE Ethereum today!</h3>
-                <p class="m-0">
-                    Answer paid surveys or watch PTC to redeem free TH/s rewards daily.
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12"></div>
-        <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12">
-            <div class="input-group input-group-lg py-5" x-data="{address: ''}">
-                <input type="text" class="form-control" placeholder="EX:0x8A288Aa1475f282D7XXX" x-model="address">
-                <button class="btn btn-secondary" x-bind:disabled="!validAddress(address)" @click="$wire.login(address, 0)">Start Mining</button>
-            </div>
-        </div>
-        <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12"></div>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <div class="text-center">
-                <p class="m-0 text-danger">Minimal withdrawal: 0.0000001 ETH</p>
-                <div class="pt-5">
-                    <a href="https://twitter.com/freebnbnow" class="btn btn-dark w-25">Follow US on Twitter</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+        function init() {
+            // Scene and Camera
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 300;
 
-<script>
-    function validAddress(address) {
-        if (address.length === 0) {
-            return false;
+            // Renderer
+            renderer = new THREE.WebGLRenderer({ alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.body.appendChild(renderer.domElement);
+
+            // Load the GLTF model
+            const loader = new THREE.GLTFLoader();
+            loader.load('heart.glb', function (gltf) {
+                heartModel = gltf.scene;
+                heartModel.scale.set(10, 10, 10); // Adjust size
+                scene.add(heartModel);
+            }, undefined, function (error) {
+                console.error(error);
+            });
+
+            // Add Lighting
+            const light = new THREE.DirectionalLight(0xffffff, 1);
+            light.position.set(5, 5, 5).normalize();
+            scene.add(light);
+
+            // Precompute scatter positions
+            for (let i = 0; i < 2000; i++) {
+                scatterPositions[i * 3] = (Math.random() - 0.5) * 600;
+                scatterPositions[i * 3 + 1] = (Math.random() - 0.5) * 600;
+                scatterPositions[i * 3 + 2] = (Math.random() - 0.5) * 600;
+            }
+
+            // Precompute ECG line positions
+            createECGShape();
+
+            // Event Listeners
+            window.addEventListener('scroll', onScroll);
+            window.addEventListener('resize', onWindowResize);
         }
-        let expressions = ["^0x[a-fA-F0-9]{40}$"];
-        for (let i = 0; i < expressions.length; i++) {
-            let regex = new RegExp(expressions[i]);
-            if (regex.test(address)) {
-                return true;
+
+        function createECGShape() {
+            for (let i = 0; i < 2000; i++) {
+                ecgPositions[i * 3] = (i % 50) * 4 - 100;
+                ecgPositions[i * 3 + 1] = Math.sin(i * 0.1) * 50;
+                ecgPositions[i * 3 + 2] = 0;
             }
         }
-        return false;
-    }
-</script>
-    </div>
 
-    <div class="bg-body-secondary py-5">
-        <div class="container">
-            <div wire:snapshot="{&quot;data&quot;:[],&quot;memo&quot;:{&quot;id&quot;:&quot;JXXemohYYeS6qSo7oAiH&quot;,&quot;name&quot;:&quot;features&quot;,&quot;path&quot;:&quot;\/&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;children&quot;:[],&quot;scripts&quot;:[],&quot;assets&quot;:[],&quot;errors&quot;:[],&quot;locale&quot;:&quot;en&quot;},&quot;checksum&quot;:&quot;68e7f6af258bdc1470f5094d9b25a0386eff4261d9714a44f43d4777d0fe40f2&quot;}" wire:effects="[]" wire:id="JXXemohYYeS6qSo7oAiH">
-    <h2 class="text-center pb-3">FEATURES</h2>
-    <div class="row">
-        <div class="col-md-7 col-lg-4 mx-auto text-center mt-3">
-            <img src="img/Withdraw.svg" class="w-50"/>
-            <p class="fs-5 fw-light" style="font-weight: 700 !important;">Instantly Withdraw</p>
-            <p class="fw-light mb-0 mt-n1 lh-xs">
-                <small>
-                    You can withdraw your mining ETH instantly once you reach the minimum payment threshold, without any delays or freezing! ERC20 Fee: 0.0007 ETH, <a href="https://faucetpay.io/?r=6120747" target="_blank">Faucet Pay</a> Fee: 0 ETH
-                </small>
-            </p>
-        </div>
-        <div class="col-md-7 col-lg-4 mx-auto text-center mt-3">
-            <img src="img/connect.svg" class="w-50"/>
-            <p class="fs-5 fw-light" style="font-weight: 700 !important;">Instantly Connect</p>
-            <p class="fw-light mb-0 mt-n1 lh-xs">
-                <small>
-                    We are Simple, Add your ETH wallet address, Mining Start immediately. In case you Buy Power, mining starts instantly once we confirmed payment.
-                </small>
-            </p>
-        </div>
-        <div class="col-md-7 col-lg-4 mx-auto text-center mt-3">
-            <img src="img/fees.svg" class="w-50"/>
-            <p class="fs-5 fw-light" style="font-weight: 700 !important;">No Maintenance Fees</p>
-            <p class="fw-light mb-0 mt-n1 lh-xs">
-                <small>
-                    We are super transparent, No maintenance fees for premium plans. No hidden fees or commission. Everything is visible to you. Contact Us: <a href="cdn-cgi/l/email-protection.html#d390bcbda7b2b0a7a093b6a7bbb5a1b6fdb0bcbe"><span class="__cf_email__" data-cfemail="6625090812070512152603120e0014034805090b">[email&#160;protected]</span></a>
-                </small>
-            </p>
-        </div>
-    </div>
-</div>
-        </div>
-    </div>
+        function onScroll() {
+            const scrollY = window.scrollY;
+            const maxScroll = document.body.scrollHeight - window.innerHeight;
+            const scrollPercent = scrollY / maxScroll;
 
-    <div class="container py-5">
-        <div class="col-12">
-            <div wire:snapshot="{&quot;data&quot;:[],&quot;memo&quot;:{&quot;id&quot;:&quot;FFplDWjrrjI8ohRXQm4b&quot;,&quot;name&quot;:&quot;recent-withdraw&quot;,&quot;path&quot;:&quot;\/&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;children&quot;:[],&quot;scripts&quot;:[],&quot;assets&quot;:[],&quot;errors&quot;:[],&quot;locale&quot;:&quot;en&quot;},&quot;checksum&quot;:&quot;0ce078a6cd09e904099ba8a27ee0e0df288808c22235918df0cb319bba6677f3&quot;}" wire:effects="[]" wire:id="FFplDWjrrjI8ohRXQm4b">
-    <div class="card">
-        <h5 class="card-header">Recent Withdraw Transactions</h5>
-        <table class="table table-striped">
-            <thead class="p-0 m-0">
-            <tr>
-                <th>Time</th>
-                <th>Amount</th>
-                <th>Transaction ID</th>
-            </tr>
-            </thead>
-            <tbody>
-            <!--[if BLOCK]><![endif]-->                <tr>
-                    <td>2024-06-09 15:00:46</td>
-                    <td>0.000000020000000000</td>
-                    <td>5086559299</td>
-                </tr>
-                            <tr>
-                    <td>2024-06-09 14:49:50</td>
-                    <td>0.000001330000000000</td>
-                    <td>5086544632</td>
-                </tr>
-                            <tr>
-                    <td>2024-06-09 14:45:56</td>
-                    <td>0.000000040000000000</td>
-                    <td>5086539334</td>
-                </tr>
-                            <tr>
-                    <td>2024-06-09 14:23:47</td>
-                    <td>0.000187700000000000</td>
-                    <td>5086507953</td>
-                </tr>
-                            <tr>
-                    <td>2024-06-09 14:22:35</td>
-                    <td>0.000001360000000000</td>
-                    <td>5086506244</td>
-                </tr>
-                            <tr>
-                    <td>2024-06-09 14:11:41</td>
-                    <td>0.000000020000000000</td>
-                    <td>5086491151</td>
-                </tr>
-                            <tr>
-                    <td>2024-06-09 14:10:06</td>
-                    <td>0.000001580000000000</td>
-                    <td>5086488999</td>
-                </tr>
-                            <tr>
-                    <td>2024-06-09 14:06:27</td>
-                    <td>0.000000010000000000</td>
-                    <td>5086484320</td>
-                </tr>
-                            <tr>
-                    <td>2024-06-09 13:51:48</td>
-                    <td>0.000000010000000000</td>
-                    <td>5086465557</td>
-                </tr>
-                            <tr>
-                    <td>2024-06-09 13:45:30</td>
-                    <td>0.000000030000000000</td>
-                    <td>5086457571</td>
-                </tr>
-            <!--[if ENDBLOCK]><![endif]-->
-            </tbody>
-        </table>
-    </div>
-</div>
-        </div>
-    </div>
+            if (scrollPercent < 0.33) {
+                smoothTransitionHeart(scatterPositions, scrollPercent * 3);
+            } else if (scrollPercent < 0.66) {
+                smoothTransitionHeart(ecgPositions, (scrollPercent - 0.33) * 3);
+            }
 
-    <div class="bg-body-secondary">
-        <div class="container py-5">
-            <div class="col-12">
-                <div wire:snapshot="{&quot;data&quot;:[],&quot;memo&quot;:{&quot;id&quot;:&quot;jkAMn4UYk8eA9MNg7JLm&quot;,&quot;name&quot;:&quot;recent-deposit&quot;,&quot;path&quot;:&quot;\/&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;children&quot;:[],&quot;scripts&quot;:[],&quot;assets&quot;:[],&quot;errors&quot;:[],&quot;locale&quot;:&quot;en&quot;},&quot;checksum&quot;:&quot;89bf401a437923e827464606f67bddb37a8946fca70f926f8f122eebf572ddbd&quot;}" wire:effects="[]" wire:id="jkAMn4UYk8eA9MNg7JLm">
-    <div class="card">
-        <h5 class="card-header">Recent Deposit Transactions</h5>
-        <table class="table table-striped">
-            <thead class="p-0 m-0">
-            <tr>
-                <th>Time</th>
-                <th>Address</th>
-                <th>Amount</th>
-                <th>Transaction ID</th>
-            </tr>
-            </thead>
-            <tbody>
-            <!--[if BLOCK]><![endif]-->                <tr>
-                    <td>2024-06-09 14:56:43</td>
-                    <td>
-                        <!--[if BLOCK]><![endif]-->                            0xd0fCc...9Cf8e
-                        <!--[if ENDBLOCK]><![endif]-->
-                    </td>
-                    <td>0.057000000000000000</td>
-                    <td>0x630...cd457</td>
-                </tr>
-                            <tr>
-                    <td>2024-06-09 14:53:46</td>
-                    <td>
-                        <!--[if BLOCK]><![endif]-->                            0xf87ED...a600a
-                        <!--[if ENDBLOCK]><![endif]-->
-                    </td>
-                    <td>0.061150000000000000</td>
-                    <td>0xd62...fbf66</td>
-                </tr>
-                            <tr>
-                    <td>2024-06-09 14:49:08</td>
-                    <td>
-                        <!--[if BLOCK]><![endif]-->                            0xFC1B6...0c8DE
-                        <!--[if ENDBLOCK]><![endif]-->
-                    </td>
-                    <td>0.059000000000000000</td>
-                    <td>0xf25...e2a59</td>
-                </tr>
-                            <tr>
-                    <td>2024-06-09 14:39:07</td>
-                    <td>
-                        <!--[if BLOCK]><![endif]-->                            0xBbaEd...fed7c
-                        <!--[if ENDBLOCK]><![endif]-->
-                    </td>
-                    <td>0.088000000000000000</td>
-                    <td>0x3e9...59318</td>
-                </tr>
-                            <tr>
-                    <td>2024-06-09 14:32:13</td>
-                    <td>
-                        <!--[if BLOCK]><![endif]-->                            0x2c398...Fe1C5
-                        <!--[if ENDBLOCK]><![endif]-->
-                    </td>
-                    <td>0.100000000000000000</td>
-                    <td>0xbff...89db8</td>
-                </tr>
-                            <tr>
-                    <td>2024-06-09 14:27:40</td>
-                    <td>
-                        <!--[if BLOCK]><![endif]-->                            0xA7F9E...3c78d
-                        <!--[if ENDBLOCK]><![endif]-->
-                    </td>
-                    <td>0.100000000000000000</td>
-                    <td>0x32b...65e95</td>
-                </tr>
-                            <tr>
-                    <td>2024-06-09 14:13:05</td>
-                    <td>
-                        <!--[if BLOCK]><![endif]-->                            0x31eE0...A8d3d
-                        <!--[if ENDBLOCK]><![endif]-->
-                    </td>
-                    <td>0.071200000000000000</td>
-                    <td>0x3bf...d6678</td>
-                </tr>
-                            <tr>
-                    <td>2024-06-09 14:08:34</td>
-                    <td>
-                        <!--[if BLOCK]><![endif]-->                            0xa0ead...1f246
-                        <!--[if ENDBLOCK]><![endif]-->
-                    </td>
-                    <td>0.097000000000000000</td>
-                    <td>0x5df...6b78a</td>
-                </tr>
-                            <tr>
-                    <td>2024-06-09 14:00:09</td>
-                    <td>
-                        <!--[if BLOCK]><![endif]-->                            0x8368e...6dDd4
-                        <!--[if ENDBLOCK]><![endif]-->
-                    </td>
-                    <td>0.080000000000000000</td>
-                    <td>0x4a1...8d2f0</td>
-                </tr>
-                            <tr>
-                    <td>2024-06-09 13:59:25</td>
-                    <td>
-                        <!--[if BLOCK]><![endif]-->                            0x2dab2...cD9C9
-                        <!--[if ENDBLOCK]><![endif]-->
-                    </td>
-                    <td>0.036000000000000000</td>
-                    <td>0x3fd...3898c</td>
-                </tr>
-            <!--[if ENDBLOCK]><![endif]-->
-            </tbody>
-        </table>
-    </div>
-</div>
-            </div>
-        </div>
-    </div>
-</div>
+            if (scrollY === 0) {
+                smoothTransitionHeart(heartModel.position, 1);
+            }
+        }
 
-<script data-cfasync="false" src="cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="../cdn.jsdelivr.net/npm/bootstrap%405.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
+        function smoothTransitionHeart(to, progress) {
+            if (heartModel) {
+                heartModel.position.lerp(new THREE.Vector3(...to), easeOutCubic(progress));
+            }
+        }
 
+        function easeOutCubic(t) {
+            return 1 - Math.pow(1 - t, 3);
+        }
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-DB92N2WZ4T"></script>
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
 
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-DB92N2WZ4T');
-</script>
-
-<script>
-    document.addEventListener('livewire:init', () => {
-        Livewire.on('success', (event) => {
-            iziToast.success({
-                position: 'topRight',
-                message: event.message,
-            });
-        })
-        Livewire.on('error', (event) => {
-            iziToast.error({
-                position: 'topRight',
-                message: event.message,
-            });
-        })
-    })
-</script>
-
-<script src="livewire/livewire.minf328.js?id=5d8beb2e"   data-csrf="FPedjeoFvTp86xe9z4QKbe3OFACCyopkpV6jXNXH" data-update-uri="/livewire/update" data-navigate-once="true"></script>
+        function animate() {
+            requestAnimationFrame(animate);
+            if (heartModel) {
+                heartModel.rotation.y += 0.01; // Rotate for animation effect
+            }
+            renderer.render(scene, camera);
+        }
+    </script>
 </body>
-
-<!-- Mirrored from ethfre.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2024 15:01:43 GMT -->
 </html>
